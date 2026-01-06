@@ -25,49 +25,6 @@ Neural Fate is a hybrid AI detective experience where two players (or one player
 - **Scenario Caching**: Highly-rated scenarios are saved and reused for future games
 - **Futuristic UI**: Anti-gravity animations, glassmorphism, and neon effects
 
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- Supabase account
-- Google Gemini API key
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <your-repo-url>
-   cd neural-fate
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   
-   Create a `.env.local` file in the root directory:
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=https://ndrvkpfdjdufeosfoaqv.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kcnZrcGZkamR1ZmVvc2ZvYXF2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2OTI0NjQsImV4cCI6MjA4MzI2ODQ2NH0.eyK4OCtQHyDF_tMZM08qtB_CN-J-PNS6mXbqHfKwfgg
-   GEMINI_API_KEY=AIzaSyCRUzRLHKn_OJLrCnStQF3dkiVc6wQKIWA
-   ```
-
-4. **Set up Supabase database**
-   
-   Run the SQL script in `supabase-schema.sql` in your Supabase SQL Editor to create the required tables.
-
-5. **Run the development server**
-   ```bash
-   npm run dev
-   ```
-
-6. **Open your browser**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
 ## 📦 Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
@@ -110,6 +67,18 @@ A news bulletin reveals a murder at a location where both players were present
 - The true killer is revealed
 - Rate the scenario (3+ saves it for future games)
 
+## 📊 Game Statistics
+
+- **Dilemma Frequency**:
+  - EASY: Every 3-4 hours (4 dilemmas)
+  - MEDIUM: Every 2 hours (6 dilemmas)
+  - HARD: Every hour (8 dilemmas)
+
+- **AI Opponent Accuracy**:
+  - EASY: 65% (35% error rate)
+  - MEDIUM: 82% (18% error rate)
+  - HARD: 95% (5% error rate)
+
 ## 🏗️ Project Structure
 
 ```
@@ -145,61 +114,49 @@ Neural Fate follows **Anti-Gravity** design principles:
 - **Responsive**: Mobile-first design with touch-optimized interactions
 - **Accessibility**: Minimum 48px touch targets, keyboard navigation
 
-## 🔧 Development
+## 🚀 Quick Start
 
-### Build for Production
-```bash
-npm run build
-```
+### Prerequisites
 
-### Run Production Build
-```bash
-npm start
-```
+- Node.js 18+ and npm
+- Supabase account
+- Google Gemini API key
 
-### Lint Code
-```bash
-npm run lint
-```
+### Installation
 
-## 🚢 Deployment
-
-### Deploy to Vercel
-
-1. **Push to GitHub**
+1. **Clone the repository**
    ```bash
-   git add .
-   git commit -m "Initial commit: Neural Fate game"
-   git branch -M main
-   git remote add origin <your-github-repo-url>
-   git push -u origin main
+   git clone <your-repo-url>
+   cd neural-fate
    ```
 
-2. **Import to Vercel**
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Import your GitHub repository
-   - Add environment variables from `.env.local`
-   - Click "Deploy"
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3. **Environment Variables in Vercel**
+3. **Set up environment variables**
    
-   Add these in your Vercel project settings:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `GEMINI_API_KEY`
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=<YOUR_NEXT_PUBLIC_SUPABASE_URL>
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<YOUR_NEXT_PUBLIC_SUPABASE_ANON_KEY>
+   GEMINI_API_KEY=<YOUR_GEMINI_API_KEY>
+   ```
 
-## 📊 Game Statistics
+4. **Set up Supabase database**
+   
+   Run the SQL script in `supabase-schema.sql` in your Supabase SQL Editor to create the required tables.
 
-- **Dilemma Frequency**:
-  - EASY: Every 3-4 hours (4 dilemmas)
-  - MEDIUM: Every 2 hours (6 dilemmas)
-  - HARD: Every hour (8 dilemmas)
+5. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-- **AI Opponent Accuracy**:
-  - EASY: 65% (35% error rate)
-  - MEDIUM: 82% (18% error rate)
-  - HARD: 95% (5% error rate)
+6. **Open your browser**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
 
 ## 🤝 Contributing
 
