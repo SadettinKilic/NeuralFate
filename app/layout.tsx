@@ -17,8 +17,8 @@ const shareTechMono = Share_Tech_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Neural Fate - Hybrid AI Detective Game",
-  description: "A futuristic detective experience powered by AI where your mundane choices lead to murder",
+  title: "Neural Fate - Hibrit YZ Dedektiflik Oyunu",
+  description: "Yapay zeka destekli, sıradan seçimlerinizin cinayete yol açtığı fütüristik bir dedektiflik deneyimi",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${shareTechMono.variable}`}>
+    <html lang="tr" className={`${orbitron.variable} ${shareTechMono.variable}`}>
       <body className="antialiased font-mono">
         <div className="scanlines" />
         <div className="sun-background" />

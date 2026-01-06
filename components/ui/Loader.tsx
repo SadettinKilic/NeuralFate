@@ -6,13 +6,24 @@ import { motion } from 'framer-motion';
 interface LoaderProps {
     message?: string;
     className?: string;
+    size?: 'sm' | 'md' | 'lg';
 }
 
-export function Loader({ message = 'PROCESSING...', className }: LoaderProps) {
+export function Loader({
+    message = 'ISLEM YAPILIYOR...',
+    className,
+    size = 'md'
+}: LoaderProps) {
+    const sizeClasses = {
+        sm: 'w-12 h-12',
+        md: 'w-16 h-16',
+        lg: 'w-24 h-24'
+    };
+
     return (
         <div className={`flex flex-col items-center justify-center gap-6 ${className}`}>
             {/* Vaporwave Triangle Spinner */}
-            <div className="relative w-24 h-24">
+            <div className={`relative ${sizeClasses[size]}`}>
                 <motion.div
                     className="absolute inset-0 border-4 border-[var(--color-magenta)]"
                     style={{ borderRadius: '0%' }}

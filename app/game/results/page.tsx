@@ -43,7 +43,7 @@ export default function ResultsPage() {
                 // Save scenario to database
                 await saveScenario(
                     difficulty,
-                    convergenceLocation || 'Unknown Location',
+                    convergenceLocation || 'Bilinmeyen Konum',
                     [], // Dilemmas would be saved from context
                     [], // Questions would be saved from context
                     stars
@@ -76,10 +76,10 @@ export default function ResultsPage() {
                         <div className="relative z-10">
                             <Trophy className="w-24 h-24 text-[var(--color-orange)] mx-auto mb-6" />
                             <h1 className="text-5xl font-bold mb-4 text-glow bg-gradient-to-r from-[var(--color-cyan)] to-[var(--color-orange)] bg-clip-text text-transparent font-heading">
-                                CASE CLOSED
+                                VAKA KAPANDI
                             </h1>
                             <p className="text-3xl text-[var(--color-chrome)] mb-2 font-mono">
-                                WINNER: <span className="font-bold text-[var(--color-cyan)]">{winnerName}</span>
+                                KAZANAN: <span className="font-bold text-[var(--color-cyan)]">{winnerName}</span>
                             </p>
                         </div>
                     </Card>
@@ -92,7 +92,7 @@ export default function ResultsPage() {
                     transition={{ delay: 0.3 }}
                 >
                     <Card variant="terminal" className="p-8">
-                        <h2 className="text-2xl font-bold mb-6 text-center font-heading text-[var(--color-chrome)]">FINAL_SUSPICION_METRICS</h2>
+                        <h2 className="text-2xl font-bold mb-6 text-center font-heading text-[var(--color-chrome)]">NIHAI_SUPHE_METRIKLERI</h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {/* Player 1 */}
@@ -152,17 +152,16 @@ export default function ResultsPage() {
                         <div className="flex items-start gap-4">
                             <AlertTriangle className="w-12 h-12 text-[var(--color-neon-red)] flex-shrink-0 mt-1" />
                             <div>
-                                <h2 className="text-2xl font-bold mb-4 text-[var(--color-neon-red)] font-heading uppercase tracking-widest">Truth Revealed</h2>
+                                <h2 className="text-2xl font-bold mb-4 text-[var(--color-neon-red)] font-heading uppercase tracking-widest">Bas Supheli</h2>
                                 <p className="text-[var(--color-chrome)] text-lg mb-4 font-mono">
-                                    PERPETRATOR: <span className="font-bold text-[var(--color-neon-red)] text-glow">{killerName}</span>
+                                    SUCLU: <span className="font-bold text-[var(--color-neon-red)] text-glow">{killerName}</span>
                                 </p>
                                 <p className="text-[var(--color-chrome)]/80">
-                                    Both suspects were present at <span className="font-semibold text-[var(--color-cyan)]">{convergenceLocation}</span> at the time of the murder.
-                                    Through seemingly mundane choices throughout the day, {killerName} unknowingly became entangled in a web of circumstance
-                                    that led to this tragic outcome.
+                                    Her iki şüpheli de olay anında <span className="font-semibold text-[var(--color-cyan)]">{convergenceLocation}</span> konumundaydı.
+                                    {killerName}, gün boyunca yaptığı sıradan seçimlerle farkında olmadan bu trajik sonuca giden olaylar örgüsüne karıştı.
                                 </p>
                                 <p className="text-[var(--color-chrome)]/60 mt-4 text-sm italic font-mono">
-                                    // IN NEURAL FATE, EVERY CHOICE MATTERS. Even the ordinary ones.
+                                    // NEURAL FATE'TE, HER SECIM ONEMLIDIR. Siradan olanlar bile.
                                 </p>
                             </div>
                         </div>
@@ -177,9 +176,9 @@ export default function ResultsPage() {
                         transition={{ delay: 0.9 }}
                     >
                         <Card variant="default" className="p-8">
-                            <h2 className="text-2xl font-bold mb-6 text-center text-[var(--color-cyan)] font-heading">RATE_SIMULATION</h2>
+                            <h2 className="text-2xl font-bold mb-6 text-center text-[var(--color-cyan)] font-heading">SIMULASYONU_OYLA</h2>
                             <p className="text-[var(--color-chrome)]/80 text-center mb-6 font-mono text-sm">
-                                &gt; Help us improve. Scenarios rated 3+ are archived for future training data.
+                                &gt; Gelismemize yardimci ol. 3+ puan alan senaryolar gelecek egitim verileri icin arsivlenir.
                             </p>
 
                             <div className="flex justify-center gap-4 mb-6">
@@ -209,12 +208,12 @@ export default function ResultsPage() {
                     >
                         <Card variant="terminal" className="p-8 text-center bg-black/80">
                             <h3 className="text-xl font-bold text-[var(--color-cyan)] mb-2 font-mono">
-                                {isSaving ? 'ARCHIVING_DATA...' : 'FEEDBACK_ACKNOWLEDGED'}
+                                {isSaving ? 'VERI_ARSIVLENIYOR...' : 'GERIBILDIRIM_ALINDI'}
                             </h3>
                             <p className="text-[var(--color-chrome)]/70 font-mono text-sm">
                                 {rating >= 3
-                                    ? 'SCENARIO_ARCHIVED_FOR_FUTURE_USE'
-                                    : 'DATA_DISCARDED. THANK_YOU.'}
+                                    ? 'SENARYO_GELECEK_KULLANIM_ICIN_ARSIVLENDI'
+                                    : 'VERI_SILINDI. TESEKKURLER.'}
                             </p>
                         </Card>
                     </motion.div>
@@ -233,7 +232,7 @@ export default function ResultsPage() {
                         size="lg"
                         onClick={handlePlayAgain}
                     >
-                        REBOOT_SYSTEM
+                        SISTEMI_YENIDEN_BASLAT
                     </Button>
                     <Button
                         variant="ghost"
@@ -241,7 +240,7 @@ export default function ResultsPage() {
                         size="lg"
                         onClick={() => router.push('/')}
                     >
-                        TERMINATE_SESSION
+                        OTURUMU_SONLANDIR
                     </Button>
                 </motion.div>
             </div>

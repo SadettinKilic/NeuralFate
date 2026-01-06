@@ -149,7 +149,7 @@ export default function GamePlayPage() {
     if (isLoading) {
         return (
             <main className="min-h-screen flex items-center justify-center">
-                <Loader message="GENERATING_NARRATIVE" className="scale-125" />
+                <Loader message="HIKAYE_OLUSTURULUYOR" size="lg" />
             </main>
         );
     }
@@ -158,8 +158,8 @@ export default function GamePlayPage() {
         return (
             <main className="min-h-screen flex items-center justify-center p-4">
                 <Card variant="terminal" className="p-8 text-center border-[var(--color-neon-red)]">
-                    <h2 className="font-heading text-2xl font-bold text-[var(--color-neon-red)] mb-4">SYSTEM_FAILURE</h2>
-                    <Button variant="outline" onClick={() => router.push('/')}>ABORT_SEQUENCE</Button>
+                    <h2 className="font-heading text-2xl font-bold text-[var(--color-neon-red)] mb-4">SISTEM_HATASI</h2>
+                    <Button variant="outline" onClick={() => router.push('/')}>GOREVI_IPTAL_ET</Button>
                 </Card>
             </main>
         );
@@ -179,7 +179,7 @@ export default function GamePlayPage() {
                             <span className="text-[var(--color-chrome)] text-lg tracking-widest">{currentDilemma.time}</span>
                         </div>
                         <div className="text-[var(--color-magenta)] font-semibold uppercase tracking-wider">
-                            {currentDilemma.player === 1 ? player1.name : (isVsAI ? 'AI_TURN' : player2.name)} // ACTION_REQUIRED
+                            {currentDilemma.player === 1 ? player1.name : (isVsAI ? 'YZ_SIRASI' : player2.name)} // EYLEM_GEREKLI
                         </div>
                     </div>
 
@@ -265,7 +265,7 @@ export default function GamePlayPage() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 className="mt-8 border border-[var(--color-cyan)] bg-[rgba(0,255,255,0.1)] p-4 text-center"
                             >
-                                <p className="text-[var(--color-cyan)] font-mono tracking-widest">DATA_LOGGED_SUCCESSFULLY</p>
+                                <p className="text-[var(--color-cyan)] font-mono tracking-widest">VERI_KAYDEDILDI</p>
                             </motion.div>
                         )}
                     </Card>

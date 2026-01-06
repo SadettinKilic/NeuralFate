@@ -10,33 +10,33 @@ import { Input } from '@/components/ui/Input';
 import { User, Sparkles, AlertCircle } from 'lucide-react';
 
 const AVATARS = [
-    { id: '1', name: 'Cyber Detective', prompt: 'Detective with cybernetic enhancements and trench coat' },
-    { id: '2', name: 'Neural Hacker', prompt: 'Hacker with neural implants and neon glasses' },
-    { id: '3', name: 'Street Runner', prompt: 'Street mercenary with tactical gear and mohawk' },
-    { id: '4', name: 'Corporate Agent', prompt: 'Corporate agent in sleek suit with holographic display' },
-    { id: '5', name: 'Tech Priestess', prompt: 'Tech priestess with data cables and glowing tattoos' },
-    { id: '6', name: 'Void Wanderer', prompt: 'Mysterious figure with dark cloak and void energy' },
-    { id: '7', name: 'Neon Samurai', prompt: 'Cyberpunk samurai with energy blade and armor' },
-    { id: '8', name: 'Data Ghost', prompt: 'Ghostly hacker figure with transparent holographic body' },
+    { id: '1', name: 'Siber Dedektif', prompt: 'Detective with cybernetic enhancements and trench coat' },
+    { id: '2', name: 'Nöral Hacker', prompt: 'Hacker with neural implants and neon glasses' },
+    { id: '3', name: 'Sokak Koşucusu', prompt: 'Street mercenary with tactical gear and mohawk' },
+    { id: '4', name: 'Şirket Ajanı', prompt: 'Corporate agent in sleek suit with holographic display' },
+    { id: '5', name: 'Tekno Rahibe', prompt: 'Tech priestess with data cables and glowing tattoos' },
+    { id: '6', name: 'Boşluk Gezgini', prompt: 'Mysterious figure with dark cloak and void energy' },
+    { id: '7', name: 'Neon Samuray', prompt: 'Cyberpunk samurai with energy blade and armor' },
+    { id: '8', name: 'Veri Hayaleti', prompt: 'Ghostly hacker figure with transparent holographic body' },
 ];
 
 const DIFFICULTY_OPTIONS = [
     {
         id: 'EASY',
-        name: 'EASY',
-        description: 'Dilemmas every 3-4 hours | Low interrogation pressure | AI makes frequent errors',
+        name: 'KOLAY',
+        description: 'Her 3-4 saatte bir ikilem | Düşük sorgulama baskısı | Yapay Zeka sık hata yapar',
         color: 'green'
     },
     {
         id: 'MEDIUM',
-        name: 'MEDIUM',
-        description: 'Dilemmas every 2 hours | Medium pressure | AI is balanced',
+        name: 'ORTA',
+        description: 'Her 2 saatte bir ikilem | Orta seviye baskı | Yapay Zeka dengelidir',
         color: 'yellow'
     },
     {
         id: 'HARD',
-        name: 'HARD',
-        description: 'Dilemmas every hour | High pressure | AI nearly perfect',
+        name: 'ZOR',
+        description: 'Her saat başı ikilem | Yüksek baskı | Yapay Zeka neredeyse kusursuzdur',
         color: 'red'
     }
 ];
@@ -64,16 +64,17 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
 
     const handleCharacterSubmit = () => {
         if (!tempName.trim()) {
-            setError('Please enter a name');
+            setError('Lütfen bir isim giriniz');
             return;
         }
         if (!selectedAvatar) {
-            setError('Please select an avatar');
+            setError('Lütfen bir avatar seçiniz');
             return;
         }
 
         const avatar = AVATARS.find(a => a.id === selectedAvatar)!;
 
+        // ... rest of the logic
         if (step === 'player1') {
             setPlayer1({
                 ...player1,
@@ -81,8 +82,6 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                 avatar: avatar.prompt
             });
 
-            // If solo mode or online, go to difficulty
-            // If local mode, go to player 2
             if (gameMode === 'solo' || gameMode === 'online') {
                 setStep('difficulty');
             } else {
@@ -119,15 +118,15 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                         <div className="flex items-center gap-3 mb-6 border-b border-[var(--color-magenta)] pb-4">
                             <User className="w-6 h-6 text-[var(--color-cyan)]" />
                             <h2 className="font-heading text-2xl text-[var(--color-cyan)] uppercase tracking-wider">
-                                {step === 'player1' ? 'Player 1' : 'Player 2'} // INITIALIZATION
+                                {step === 'player1' ? 'OYUNCU 1' : 'OYUNCU 2'} // BAŞLATILIYOR
                             </h2>
                         </div>
 
                         {/* Name Input */}
                         <div className="mb-8">
                             <Input
-                                label="IDENTITY_STRING"
-                                placeholder="Enter designation..."
+                                label="KIMLIK_DIZISI"
+                                placeholder="Takma ad giriniz..."
                                 value={tempName}
                                 onChange={(e) => {
                                     setTempName(e.target.value);
@@ -141,7 +140,7 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                         {/* Avatar Selection */}
                         <div className="mb-8">
                             <label className="text-[var(--color-cyan)] text-sm font-mono tracking-widest uppercase mb-4 block">
-                                &gt; SELECT_AVATAR
+                                &gt; AVATAR_SEC
                             </label>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {AVATARS.map((avatar) => (
@@ -191,14 +190,14 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                             size="lg"
                             onClick={handleCharacterSubmit}
                         >
-                            {step === 'player1' && gameMode === 'local' ? 'INITIALIZE PLAYER 2' : 'CONFIRM IDENTITY'}
+                            {step === 'player1' && gameMode === 'local' ? 'OYUNCU 2 BASLATILIYOR' : 'KIMLIGI ONAYLA'}
                         </Button>
                     </Card>
                 ) : (
                     // Difficulty Selection
                     <Card variant="terminal" className="p-8">
                         <h2 className="font-heading text-2xl text-[var(--color-cyan)] uppercase tracking-wider mb-8 border-b border-[var(--color-magenta)] pb-4">
-                            SELECT_DIFFICULTY_LEVEL
+                            ZORLUK_SEVIYESI_SEC
                         </h2>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -233,19 +232,19 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                         <div className="border border-[var(--color-border)] bg-black/40 p-4 mb-8 font-mono text-sm">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <p className="text-[var(--color-cyan)] mb-1 uppercase text-xs tracking-widest">Player 1</p>
+                                    <p className="text-[var(--color-cyan)] mb-1 uppercase text-xs tracking-widest">OYUNCU 1</p>
                                     <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">{player1.name}</p>
                                 </div>
                                 {gameMode === 'local' && (
                                     <div>
-                                        <p className="text-[var(--color-magenta)] mb-1 uppercase text-xs tracking-widest">Player 2</p>
+                                        <p className="text-[var(--color-magenta)] mb-1 uppercase text-xs tracking-widest">OYUNCU 2</p>
                                         <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">{player2.name}</p>
                                     </div>
                                 )}
                                 {isVsAI && (
                                     <div>
-                                        <p className="text-[var(--color-orange)] mb-1 uppercase text-xs tracking-widest">OPPONENT</p>
-                                        <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">NEURAL_SHADOW_AI</p>
+                                        <p className="text-[var(--color-orange)] mb-1 uppercase text-xs tracking-widest">RAKIP</p>
+                                        <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">NEURAL_SHADOW_YAPAY_ZEKA</p>
                                     </div>
                                 )}
                             </div>
@@ -257,7 +256,7 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                             size="lg"
                             onClick={handleDifficultySubmit}
                         >
-                            INITIATE_GAME_SEQUENCE
+                            OYUN_SEKANSINI_BASLAT
                         </Button>
                     </Card>
                 )}

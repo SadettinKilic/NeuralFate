@@ -14,24 +14,24 @@ export default function Home() {
   const modes = [
     {
       id: 'local',
-      title: 'LOCAL_MODE',
-      description: 'Pass-the-phone experience for two players on one terminal.',
+      title: 'YEREL_MOD',
+      description: 'Tek terminalde iki oyuncu için telefon değiştirme deneyimi.',
       icon: Monitor,
       color: 'cyan',
       variant: 'default' as const
     },
     {
       id: 'online',
-      title: 'NET_CONNECT',
-      description: 'Real-time synchronization via global neural network.',
+      title: 'AG_BAGLANTISI',
+      description: 'Küresel sinir ağı üzerinden gerçek zamanlı senkronizasyon.',
       icon: Globe,
       color: 'magenta',
       variant: 'terminal' as const
     },
     {
       id: 'solo',
-      title: 'VS_AI_CORE',
-      description: 'Challenge the Neural Shadow algorithm.',
+      title: 'VS_YAPAY_ZEKA',
+      description: 'Neural Shadow algoritmasına meydan oku.',
       icon: Bot,
       color: 'orange',
       variant: 'default' as const
@@ -64,7 +64,7 @@ export default function Home() {
           transition={{ delay: 0.8 }}
           className="font-mono text-[var(--color-cyan)] text-lg md:text-xl tracking-[0.2em] uppercase"
         >
-          &gt; Where choices lead to termination
+          &gt; Seçimlerin sona götürdüğü yer
         </motion.p>
       </motion.div>
 
@@ -109,7 +109,7 @@ export default function Home() {
                       handleModeSelect(mode.id);
                     }}
                   >
-                    INITIALIZE
+                    BAŞLAT
                   </Button>
                 </div>
               </Card>
@@ -125,7 +125,7 @@ export default function Home() {
         transition={{ delay: 1.5 }}
         className="fixed bottom-4 right-4 text-[var(--color-chrome)]/30 text-xs z-10 font-mono"
       >
-        <p>SYS.VER.2.0.88 // POWERED_BY_GEMINI_CORE</p>
+        <p>SIS.VER.2.0.88 // GEMINI_CEKIRDEGI_TARAFINDAN_GUCLENDIRILDI</p>
       </motion.div>
     </main>
   );

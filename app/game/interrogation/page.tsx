@@ -186,7 +186,7 @@ export default function InterrogationPage() {
     if (isLoading) {
         return (
             <main className="min-h-screen flex items-center justify-center">
-                <Loader message="INITIALIZING_INTERROGATION" size="lg" />
+                <Loader message="SORGULAMA_BASLATILIYOR" size="lg" />
             </main>
         );
     }
@@ -195,8 +195,8 @@ export default function InterrogationPage() {
         return (
             <main className="min-h-screen flex items-center justify-center p-4">
                 <Card variant="terminal" className="p-8 text-center text-[var(--color-neon-red)]">
-                    <h2 className="text-2xl font-bold font-heading mb-4">DATA_CORRUPTION</h2>
-                    <Button onClick={() => router.push('/')}>SYSTEM_RESET</Button>
+                    <h2 className="text-2xl font-bold font-heading mb-4">VERI_BOZULMASI</h2>
+                    <Button onClick={() => router.push('/')}>SISTEM_SIFIRLAMA</Button>
                 </Card>
             </main>
         );
@@ -211,8 +211,8 @@ export default function InterrogationPage() {
                 >
                     <Card variant="terminal" className="p-12 text-center border-[var(--color-neon-red)]">
                         <XCircle className="w-24 h-24 text-[var(--color-neon-red)] mx-auto mb-6" />
-                        <h2 className="text-5xl font-bold text-[var(--color-neon-red)] mb-4 text-glow font-heading">SUBJECT_DETAINED</h2>
-                        <p className="text-[var(--color-chrome)] text-lg font-mono">CRITICAL_FAILURE_THRESHOLD_EXCEEDED</p>
+                        <h2 className="text-5xl font-bold text-[var(--color-neon-red)] mb-4 text-glow font-heading">SUBJE_TUTUKLANDI</h2>
+                        <p className="text-[var(--color-chrome)] text-lg font-mono">KRITIK_HATA_ESIGI_ASILDI</p>
                     </Card>
                 </motion.div>
             </main>
@@ -241,10 +241,10 @@ export default function InterrogationPage() {
                         <div className="mb-6">
                             <div className="flex items-center justify-between mb-4 font-mono">
                                 <h3 className="text-[var(--color-cyan)] font-semibold tracking-wider">
-                                    QUERY_SEQUENCE {currentQuestionIndex + 1}/{questions.length}
+                                    SORGU_SEKANSI {currentQuestionIndex + 1}/{questions.length}
                                 </h3>
                                 <div className="text-[var(--color-chrome)]">
-                                    SUBJECT: <span className="font-bold text-[var(--color-magenta)]">{targetPlayerName}</span>
+                                    SUBJE: <span className="font-bold text-[var(--color-magenta)]">{targetPlayerName}</span>
                                 </div>
                             </div>
 
@@ -292,7 +292,7 @@ export default function InterrogationPage() {
                                 </svg>
                                 <div className="absolute inset-0 flex items-center justify-center flex-col">
                                     <span className="text-4xl font-bold font-mono text-glow-cyan">{countdown}</span>
-                                    <span className="text-[10px] text-[var(--color-chrome)] font-mono tracking-widest">SEC</span>
+                                    <span className="text-[10px] text-[var(--color-chrome)] font-mono tracking-widest">SN</span>
                                 </div>
                             </motion.div>
                         </div>
@@ -359,7 +359,7 @@ export default function InterrogationPage() {
                                     >
                                         <AlertCircle className="w-6 h-6 text-[var(--color-orange)] animate-pulse" />
                                         <p className="text-[var(--color-orange)] font-mono font-bold tracking-widest text-sm uppercase">
-                                            CRITICAL_DATA_POINT // FAILURE_MAY_RESULT_IN_TERMINATION
+                                            KRITIK_VERI_NOKTASI // HATA_SONLANDIRMA_ILE_SONUCLANABILIR
                                         </p>
                                     </motion.div>
                                 )}
@@ -371,7 +371,7 @@ export default function InterrogationPage() {
                 {/* Suspicion Meter Sidebar */}
                 <div className="lg:col-span-3">
                     <Card variant="terminal" className="p-6 sticky top-4 h-full">
-                        <h3 className="text-center font-heading text-lg mb-6 text-[var(--color-cyan)] uppercase">Suspicion_Level</h3>
+                        <h3 className="text-center font-heading text-lg mb-6 text-[var(--color-cyan)] uppercase">SUPHE_SEVIYESI</h3>
 
                         {/* Vertical meter */}
                         <div className="relative h-64 w-full flex items-center justify-center">
@@ -415,7 +415,7 @@ export default function InterrogationPage() {
 
                         {/* Strikes */}
                         <div className="mt-8 text-center border-t border-[var(--color-border)] pt-4">
-                            <p className="text-[var(--color-chrome)] font-mono text-xs mb-3 tracking-widest">STRIKES</p>
+                            <p className="text-[var(--color-chrome)] font-mono text-xs mb-3 tracking-widest">UYARILAR</p>
                             <div className="flex justify-center gap-2">
                                 {[0, 1].map((i) => (
                                     <div
@@ -425,7 +425,7 @@ export default function InterrogationPage() {
                                     />
                                 ))}
                             </div>
-                            <p className="text-[var(--color-neon-red)] text-[10px] mt-2 font-mono uppercase">2 Strikes = Termination</p>
+                            <p className="text-[var(--color-neon-red)] text-[10px] mt-2 font-mono uppercase">2 Uyarı = Sonlandırma</p>
                         </div>
                     </Card>
                 </div>
