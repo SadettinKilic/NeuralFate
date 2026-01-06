@@ -186,7 +186,7 @@ export default function InterrogationPage() {
     if (isLoading) {
         return (
             <main className="min-h-screen flex items-center justify-center">
-                <Loader message="Preparing interrogation..." size="lg" />
+                <Loader message="INITIALIZING_INTERROGATION" size="lg" />
             </main>
         );
     }
@@ -194,9 +194,9 @@ export default function InterrogationPage() {
     if (!questions.length) {
         return (
             <main className="min-h-screen flex items-center justify-center p-4">
-                <Card variant="strong" className="p-8 text-center">
-                    <h2 className="text-2xl font-bold text-neon-red mb-4">Error Loading Questions</h2>
-                    <Button onClick={() => router.push('/')}>Return Home</Button>
+                <Card variant="terminal" className="p-8 text-center text-[var(--color-neon-red)]">
+                    <h2 className="text-2xl font-bold font-heading mb-4">DATA_CORRUPTION</h2>
+                    <Button onClick={() => router.push('/')}>SYSTEM_RESET</Button>
                 </Card>
             </main>
         );
@@ -209,10 +209,10 @@ export default function InterrogationPage() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                 >
-                    <Card variant="strong" className="p-12 text-center">
-                        <XCircle className="w-24 h-24 text-neon-red mx-auto mb-6" />
-                        <h2 className="text-4xl font-bold text-neon-red mb-4 text-glow">ARRESTED</h2>
-                        <p className="text-cyber-white/80 text-lg">Too many critical errors. Suspicion level: 100%</p>
+                    <Card variant="terminal" className="p-12 text-center border-[var(--color-neon-red)]">
+                        <XCircle className="w-24 h-24 text-[var(--color-neon-red)] mx-auto mb-6" />
+                        <h2 className="text-5xl font-bold text-[var(--color-neon-red)] mb-4 text-glow font-heading">SUBJECT_DETAINED</h2>
+                        <p className="text-[var(--color-chrome)] text-lg font-mono">CRITICAL_FAILURE_THRESHOLD_EXCEEDED</p>
                     </Card>
                 </motion.div>
             </main>
@@ -236,22 +236,22 @@ export default function InterrogationPage() {
             <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Main Question Area */}
                 <div className="lg:col-span-9">
-                    <Card variant="strong" className="p-8">
+                    <Card variant="terminal" className="p-8">
                         {/* Header */}
                         <div className="mb-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-electric-blue font-semibold">
-                                    Question {currentQuestionIndex + 1} of {questions.length}
+                            <div className="flex items-center justify-between mb-4 font-mono">
+                                <h3 className="text-[var(--color-cyan)] font-semibold tracking-wider">
+                                    QUERY_SEQUENCE {currentQuestionIndex + 1}/{questions.length}
                                 </h3>
-                                <span className="text-cyber-white">
-                                    Interrogating: <span className="font-bold">{targetPlayerName}</span>
-                                </span>
+                                <div className="text-[var(--color-chrome)]">
+                                    SUBJECT: <span className="font-bold text-[var(--color-magenta)]">{targetPlayerName}</span>
+                                </div>
                             </div>
 
                             {/* Progress bar */}
-                            <div className="w-full bg-midnight/50 rounded-full h-2 overflow-hidden">
+                            <div className="w-full bg-black/50 h-2 overflow-hidden border border-[var(--color-border)]">
                                 <motion.div
-                                    className="h-full bg-gradient-to-r from-electric-blue to-neon-red"
+                                    className="h-full bg-gradient-to-r from-[var(--color-cyan)] to-[var(--color-magenta)]"
                                     initial={{ width: 0 }}
                                     animate={{ width: `${progress}%` }}
                                 />
@@ -261,38 +261,38 @@ export default function InterrogationPage() {
                         {/* Countdown Timer */}
                         <div className="flex items-center justify-center mb-8">
                             <motion.div
-                                className="relative w-24 h-24"
+                                className="relative w-32 h-32"
                                 animate={{
                                     scale: countdown <= 5 ? [1, 1.1, 1] : 1
                                 }}
                                 transition={{ duration: 0.5, repeat: countdown <= 5 ? Infinity : 0 }}
                             >
-                                <svg className="transform -rotate-90 w-24 h-24">
+                                <svg className="transform -rotate-90 w-32 h-32">
                                     <circle
-                                        cx="48"
-                                        cy="48"
-                                        r="40"
-                                        stroke="rgba(0, 217, 255, 0.2)"
-                                        strokeWidth="6"
+                                        cx="64"
+                                        cy="64"
+                                        r="56"
+                                        stroke="rgba(0, 255, 255, 0.1)"
+                                        strokeWidth="4"
                                         fill="none"
                                     />
                                     <motion.circle
-                                        cx="48"
-                                        cy="48"
-                                        r="40"
-                                        stroke={countdown <= 5 ? '#ff0844' : '#00d9ff'}
-                                        strokeWidth="6"
+                                        cx="64"
+                                        cy="64"
+                                        r="56"
+                                        stroke={countdown <= 5 ? 'var(--color-neon-red)' : 'var(--color-cyan)'}
+                                        strokeWidth="4"
                                         fill="none"
-                                        strokeLinecap="round"
-                                        strokeDasharray={`${2 * Math.PI * 40}`}
-                                        strokeDashoffset={`${2 * Math.PI * 40 * (1 - countdown / 15)}`}
+                                        strokeLinecap="square"
+                                        strokeDasharray={`${2 * Math.PI * 56}`}
                                         initial={{ strokeDashoffset: 0 }}
-                                        animate={{ strokeDashoffset: `${2 * Math.PI * 40 * (1 - countdown / 15)}` }}
+                                        animate={{ strokeDashoffset: `${2 * Math.PI * 56 * (1 - countdown / 15)}` }}
                                         transition={{ duration: 0.3 }}
                                     />
                                 </svg>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="text-3xl font-bold text-glow">{countdown}</span>
+                                <div className="absolute inset-0 flex items-center justify-center flex-col">
+                                    <span className="text-4xl font-bold font-mono text-glow-cyan">{countdown}</span>
+                                    <span className="text-[10px] text-[var(--color-chrome)] font-mono tracking-widest">SEC</span>
                                 </div>
                             </motion.div>
                         </div>
@@ -305,7 +305,7 @@ export default function InterrogationPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                             >
-                                <h2 className="text-2xl md:text-3xl font-bold mb-8 text-cyber-white text-center leading-relaxed">
+                                <h2 className="text-xl md:text-3xl font-bold mb-8 text-[var(--color-chrome)] text-center leading-relaxed font-heading">
                                     {currentQuestion.question}
                                 </h2>
 
@@ -327,11 +327,10 @@ export default function InterrogationPage() {
                                                         isAnswered && isSelected
                                                             ? isCorrect
                                                                 ? 'primary'
-                                                                : 'danger'
-                                                            : 'secondary'
+                                                                : 'secondary' // Red highlight handled by style prop if needed or just variant logic
+                                                            : 'outline'
                                                     }
-                                                    className={`w-full h-auto py-4 relative ${isAnswered && isSelected ? 'ring-2 ring-offset-2' : ''
-                                                        }`}
+                                                    className={`w-full h-auto py-5 relative ${isAnswered && isSelected ? 'ring-2 ring-offset-2 ring-black' : ''}`}
                                                     onClick={() => handleAnswer(option)}
                                                     disabled={isAnswered}
                                                 >
@@ -339,9 +338,9 @@ export default function InterrogationPage() {
                                                     {isAnswered && isSelected && (
                                                         <span className="ml-2">
                                                             {isCorrect ? (
-                                                                <CheckCircle2 className="w-5 h-5 inline text-electric-blue" />
+                                                                <CheckCircle2 className="w-5 h-5 inline text-[var(--color-cyan)]" />
                                                             ) : (
-                                                                <XCircle className="w-5 h-5 inline text-neon-red" />
+                                                                <XCircle className="w-5 h-5 inline text-[var(--color-neon-red)]" />
                                                             )}
                                                         </span>
                                                     )}
@@ -356,11 +355,11 @@ export default function InterrogationPage() {
                                     <motion.div
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
-                                        className="mt-6 glass-strong p-4 rounded-lg flex items-center gap-3 border border-warning-yellow/50"
+                                        className="mt-6 border border-[var(--color-orange)] bg-[rgba(255,153,0,0.1)] p-4 flex items-center justify-center gap-3"
                                     >
-                                        <AlertCircle className="w-6 h-6 text-warning-yellow" />
-                                        <p className="text-warning-yellow font-semibold">
-                                            CRITICAL QUESTION - Wrong answer may result in arrest
+                                        <AlertCircle className="w-6 h-6 text-[var(--color-orange)] animate-pulse" />
+                                        <p className="text-[var(--color-orange)] font-mono font-bold tracking-widest text-sm uppercase">
+                                            CRITICAL_DATA_POINT // FAILURE_MAY_RESULT_IN_TERMINATION
                                         </p>
                                     </motion.div>
                                 )}
@@ -371,18 +370,25 @@ export default function InterrogationPage() {
 
                 {/* Suspicion Meter Sidebar */}
                 <div className="lg:col-span-3">
-                    <Card variant="strong" className="p-6 sticky top-4">
-                        <h3 className="text-center font-bold mb-6 text-cyber-white">Suspicion Level</h3>
+                    <Card variant="terminal" className="p-6 sticky top-4 h-full">
+                        <h3 className="text-center font-heading text-lg mb-6 text-[var(--color-cyan)] uppercase">Suspicion_Level</h3>
 
                         {/* Vertical meter */}
-                        <div className="relative h-80 w-full flex items-center justify-center">
-                            <div className="relative w-16 h-full bg-midnight/50 rounded-full overflow-hidden border-2 border-electric-blue/30">
+                        <div className="relative h-64 w-full flex items-center justify-center">
+                            <div className="relative w-12 h-full bg-black rounded-sm overflow-hidden border border-[var(--color-border)]">
+                                {/* Grid lines for meter */}
+                                <div className="absolute inset-0 z-10 flex flex-col justify-between p-1 opacity-30">
+                                    {[...Array(10)].map((_, i) => (
+                                        <div key={i} className="w-full h-px bg-[var(--color-cyan)]" />
+                                    ))}
+                                </div>
+
                                 <motion.div
-                                    className={`absolute bottom-0 w-full rounded-full ${targetSuspicion < 30
-                                            ? 'bg-gradient-to-t from-green-500 to-green-400'
-                                            : targetSuspicion < 70
-                                                ? 'bg-gradient-to-t from-warning-yellow to-yellow-400'
-                                                : 'bg-gradient-to-t from-neon-red to-red-500'
+                                    className={`absolute bottom-0 w-full ${targetSuspicion < 30
+                                        ? 'bg-gradient-to-t from-[var(--color-cyan)] to-blue-500'
+                                        : targetSuspicion < 70
+                                            ? 'bg-gradient-to-t from-[var(--color-orange)] to-yellow-400'
+                                            : 'bg-gradient-to-t from-[var(--color-neon-red)] to-red-600'
                                         }`}
                                     initial={{ height: 0 }}
                                     animate={{
@@ -390,21 +396,15 @@ export default function InterrogationPage() {
                                     }}
                                     transition={{ type: 'spring', damping: 15 }}
                                 />
-
-                                {/* Pulse effect */}
-                                <motion.div
-                                    className="absolute inset-0 bg-white/20"
-                                    animate={{ opacity: [0, 0.3, 0] }}
-                                    transition={{ duration: 2, repeat: Infinity }}
-                                />
                             </div>
 
                             {/* Percentage label */}
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <motion.span
-                                    className="text-4xl font-bold text-glow"
+                                    className="text-4xl font-bold font-mono text-glow bg-black/50 px-2"
                                     animate={{
-                                        scale: targetSuspicion >= 80 ? [1, 1.1, 1] : 1
+                                        scale: targetSuspicion >= 80 ? [1, 1.1, 1] : 1,
+                                        color: targetSuspicion >= 80 ? 'var(--color-neon-red)' : 'var(--color-chrome)'
                                     }}
                                     transition={{ duration: 0.5, repeat: targetSuspicion >= 80 ? Infinity : 0 }}
                                 >
@@ -414,18 +414,18 @@ export default function InterrogationPage() {
                         </div>
 
                         {/* Strikes */}
-                        <div className="mt-6 text-center">
-                            <p className="text-cyber-white/70 text-sm mb-2">Strikes</p>
+                        <div className="mt-8 text-center border-t border-[var(--color-border)] pt-4">
+                            <p className="text-[var(--color-chrome)] font-mono text-xs mb-3 tracking-widest">STRIKES</p>
                             <div className="flex justify-center gap-2">
                                 {[0, 1].map((i) => (
                                     <div
                                         key={i}
-                                        className={`w-4 h-4 rounded-full ${i < strikes ? 'bg-neon-red' : 'bg-cyber-white/20'
+                                        className={`w-6 h-6 border-2 border-[var(--color-neon-red)] ${i < strikes ? 'bg-[var(--color-neon-red)] shadow-[0_0_10px_red]' : 'bg-transparent'
                                             }`}
                                     />
                                 ))}
                             </div>
-                            <p className="text-neon-red text-xs mt-2">2 strikes = Arrested</p>
+                            <p className="text-[var(--color-neon-red)] text-[10px] mt-2 font-mono uppercase">2 Strikes = Termination</p>
                         </div>
                     </Card>
                 </div>

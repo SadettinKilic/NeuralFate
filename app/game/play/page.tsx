@@ -149,7 +149,7 @@ export default function GamePlayPage() {
     if (isLoading) {
         return (
             <main className="min-h-screen flex items-center justify-center">
-                <Loader message="Generating your story..." size="lg" />
+                <Loader message="GENERATING_NARRATIVE" className="scale-125" />
             </main>
         );
     }
@@ -157,9 +157,9 @@ export default function GamePlayPage() {
     if (!storyData) {
         return (
             <main className="min-h-screen flex items-center justify-center p-4">
-                <Card variant="strong" className="p-8 text-center">
-                    <h2 className="text-2xl font-bold text-neon-red mb-4">Error Loading Story</h2>
-                    <Button onClick={() => router.push('/')}>Return Home</Button>
+                <Card variant="terminal" className="p-8 text-center border-[var(--color-neon-red)]">
+                    <h2 className="font-heading text-2xl font-bold text-[var(--color-neon-red)] mb-4">SYSTEM_FAILURE</h2>
+                    <Button variant="outline" onClick={() => router.push('/')}>ABORT_SEQUENCE</Button>
                 </Card>
             </main>
         );
@@ -172,21 +172,21 @@ export default function GamePlayPage() {
         <main className="min-h-screen flex flex-col items-center justify-center p-4">
             {/* Header */}
             <div className="w-full max-w-4xl mb-6">
-                <div className="glass p-4 rounded-lg">
-                    <div className="flex items-center justify-between mb-4">
+                <div className="glass p-4">
+                    <div className="flex items-center justify-between mb-4 font-mono">
                         <div className="flex items-center gap-2">
-                            <Clock className="w-5 h-5 text-electric-blue" />
-                            <span className="text-cyber-white font-mono text-lg">{currentDilemma.time}</span>
+                            <Clock className="w-5 h-5 text-[var(--color-cyan)]" />
+                            <span className="text-[var(--color-chrome)] text-lg tracking-widest">{currentDilemma.time}</span>
                         </div>
-                        <div className="text-cyber-white font-semibold">
-                            {currentDilemma.player === 1 ? player1.name : (isVsAI ? 'AI Turn' : player2.name)}
+                        <div className="text-[var(--color-magenta)] font-semibold uppercase tracking-wider">
+                            {currentDilemma.player === 1 ? player1.name : (isVsAI ? 'AI_TURN' : player2.name)} // ACTION_REQUIRED
                         </div>
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="w-full bg-midnight/50 rounded-full h-2 overflow-hidden">
+                    <div className="w-full bg-black/50 h-2 overflow-hidden border border-[var(--color-border)]">
                         <motion.div
-                            className="h-full bg-gradient-to-r from-electric-blue to-neon-red"
+                            className="h-full bg-gradient-to-r from-[var(--color-cyan)] to-[var(--color-magenta)]"
                             initial={{ width: 0 }}
                             animate={{ width: `${progress}%` }}
                             transition={{ duration: 0.5 }}
@@ -204,34 +204,35 @@ export default function GamePlayPage() {
                     exit={{ opacity: 0, x: -50 }}
                     className="w-full max-w-4xl"
                 >
-                    <Card variant="strong" className="p-8">
+                    <Card variant="terminal" className="p-8">
                         {/* Question */}
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-2xl md:text-3xl font-bold mb-8 text-cyber-white leading-relaxed"
+                            className="font-heading text-xl md:text-3xl font-bold mb-8 text-[var(--color-chrome)] leading-relaxed text-center"
                         >
                             {currentDilemma.question}
                         </motion.h2>
 
                         {/* Countdown Timer */}
                         {!showingResult && (
-                            <div className="mb-6 flex items-center justify-center">
+                            <div className="mb-8 flex items-center justify-center">
                                 <motion.div
-                                    className="text-6xl font-bold text-glow"
+                                    className="text-6xl font-bold font-mono tracking-tighter"
                                     animate={{
                                         scale: countdown <= 3 ? [1, 1.1, 1] : 1,
-                                        color: countdown <= 3 ? '#ff0844' : '#00d9ff'
+                                        color: countdown <= 3 ? 'var(--color-neon-red)' : 'var(--color-cyan)',
+                                        textShadow: countdown <= 3 ? '0 0 20px red' : '0 0 20px cyan'
                                     }}
                                     transition={{ duration: 0.5 }}
                                 >
-                                    {countdown}
+                                    00:{countdown.toString().padStart(2, '0')}
                                 </motion.div>
                             </div>
                         )}
 
                         {/* Options */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {currentDilemma.options.map((option, index) => (
                                 <motion.div
                                     key={index}
@@ -245,10 +246,10 @@ export default function GamePlayPage() {
                                         onClick={() => handleChoice(index)}
                                         disabled={showingResult}
                                     >
-                                        <div className="flex flex-col items-start gap-2">
-                                            <span className="font-bold">{option}</span>
-                                            <span className="text-sm text-electric-blue/70 flex items-center gap-1">
-                                                <MapPin className="w-4 h-4" />
+                                        <div className="flex flex-col items-start gap-2 w-full">
+                                            <span className="font-bold text-left">{option}</span>
+                                            <span className="text-xs text-[var(--color-chrome)]/70 flex items-center gap-1 font-mono uppercase">
+                                                <MapPin className="w-3 h-3" />
                                                 {currentDilemma.locations[index]}
                                             </span>
                                         </div>
@@ -262,9 +263,9 @@ export default function GamePlayPage() {
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="mt-6 glass-strong p-4 rounded-lg text-center"
+                                className="mt-8 border border-[var(--color-cyan)] bg-[rgba(0,255,255,0.1)] p-4 text-center"
                             >
-                                <p className="text-electric-blue font-semibold">Choice Recorded</p>
+                                <p className="text-[var(--color-cyan)] font-mono tracking-widest">DATA_LOGGED_SUCCESSFULLY</p>
                             </motion.div>
                         )}
                     </Card>

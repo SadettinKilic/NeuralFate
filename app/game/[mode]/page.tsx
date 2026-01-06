@@ -7,7 +7,7 @@ import { useGame } from '@/lib/contexts/GameContext';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
-import { User, Sparkles } from 'lucide-react';
+import { User, Sparkles, AlertCircle } from 'lucide-react';
 
 const AVATARS = [
     { id: '1', name: 'Cyber Detective', prompt: 'Detective with cybernetic enhancements and trench coat' },
@@ -115,19 +115,19 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
             >
                 {step !== 'difficulty' ? (
                     // Character Creation
-                    <Card variant="strong" className="p-8">
-                        <div className="flex items-center gap-3 mb-6">
-                            <User className="w-8 h-8 text-electric-blue" />
-                            <h2 className="text-3xl font-bold text-glow">
-                                {step === 'player1' ? 'Player 1' : 'Player 2'} - Create Character
+                    <Card variant="terminal" className="p-8">
+                        <div className="flex items-center gap-3 mb-6 border-b border-[var(--color-magenta)] pb-4">
+                            <User className="w-6 h-6 text-[var(--color-cyan)]" />
+                            <h2 className="font-heading text-2xl text-[var(--color-cyan)] uppercase tracking-wider">
+                                {step === 'player1' ? 'Player 1' : 'Player 2'} // INITIALIZATION
                             </h2>
                         </div>
 
                         {/* Name Input */}
                         <div className="mb-8">
                             <Input
-                                label="Character Name"
-                                placeholder="Enter your name..."
+                                label="IDENTITY_STRING"
+                                placeholder="Enter designation..."
                                 value={tempName}
                                 onChange={(e) => {
                                     setTempName(e.target.value);
@@ -140,8 +140,8 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
 
                         {/* Avatar Selection */}
                         <div className="mb-8">
-                            <label className="text-cyber-white text-sm font-medium mb-4 block">
-                                Select Avatar
+                            <label className="text-[var(--color-cyan)] text-sm font-mono tracking-widest uppercase mb-4 block">
+                                &gt; SELECT_AVATAR
                             </label>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {AVATARS.map((avatar) => (
@@ -152,10 +152,10 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                                     >
                                         <div
                                             className={`
-                        glass p-4 rounded-lg cursor-pointer transition-all duration-300
-                        border-2 ${selectedAvatar === avatar.id
-                                                    ? 'border-electric-blue shadow-[0_0_20px_rgba(0,217,255,0.5)]'
-                                                    : 'border-transparent hover:border-electric-blue/50'
+                        glass p-4 cursor-pointer transition-all duration-300 relative overflow-hidden group
+                        ${selectedAvatar === avatar.id
+                                                    ? 'border-2 border-[var(--color-cyan)] shadow-[0_0_20px_rgba(0,255,255,0.4)]'
+                                                    : 'border border-[var(--color-border)] hover:border-[var(--color-magenta)]'
                                                 }
                       `}
                                             onClick={() => {
@@ -163,10 +163,14 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                                                 setError('');
                                             }}
                                         >
-                                            <div className="aspect-square bg-midnight/50 rounded-lg mb-2 flex items-center justify-center">
-                                                <Sparkles className="w-8 h-8 text-electric-blue/50" />
+                                            {selectedAvatar === avatar.id && (
+                                                <div className="absolute inset-0 bg-[var(--color-cyan)] opacity-10" />
+                                            )}
+
+                                            <div className="aspect-square bg-black/50 mb-3 flex items-center justify-center border border-[var(--color-border)] group-hover:border-[var(--color-magenta)] transition-colors">
+                                                <Sparkles className={`w-8 h-8 ${selectedAvatar === avatar.id ? 'text-[var(--color-cyan)]' : 'text-[var(--color-magenta)]'} group-hover:animate-spin`} />
                                             </div>
-                                            <p className="text-cyber-white text-xs text-center font-medium">
+                                            <p className="text-[var(--color-chrome)] text-xs text-center font-mono uppercase tracking-tight">
                                                 {avatar.name}
                                             </p>
                                         </div>
@@ -174,7 +178,9 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                                 ))}
                             </div>
                             {error && !selectedAvatar && (
-                                <p className="text-neon-red text-sm mt-2">{error}</p>
+                                <p className="text-[var(--color-neon-red)] text-sm mt-3 font-mono flex items-center gap-2">
+                                    <AlertCircle className="w-4 h-4" /> {error}
+                                </p>
                             )}
                         </div>
 
@@ -185,15 +191,17 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                             size="lg"
                             onClick={handleCharacterSubmit}
                         >
-                            {step === 'player1' && gameMode === 'local' ? 'Next: Player 2' : 'Continue'}
+                            {step === 'player1' && gameMode === 'local' ? 'INITIALIZE PLAYER 2' : 'CONFIRM IDENTITY'}
                         </Button>
                     </Card>
                 ) : (
                     // Difficulty Selection
-                    <Card variant="strong" className="p-8">
-                        <h2 className="text-3xl font-bold text-glow mb-6">Select Difficulty</h2>
+                    <Card variant="terminal" className="p-8">
+                        <h2 className="font-heading text-2xl text-[var(--color-cyan)] uppercase tracking-wider mb-8 border-b border-[var(--color-magenta)] pb-4">
+                            SELECT_DIFFICULTY_LEVEL
+                        </h2>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                             {DIFFICULTY_OPTIONS.map((diff) => (
                                 <motion.div
                                     key={diff.id}
@@ -202,16 +210,18 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                                 >
                                     <div
                                         className={`
-                      glass p-6 rounded-lg cursor-pointer transition-all duration-300
-                      border-2 ${difficulty === diff.id
-                                                ? 'border-electric-blue shadow-[0_0_20px_rgba(0,217,255,0.5)]'
-                                                : 'border-transparent hover:border-electric-blue/50'
+                      glass p-6 cursor-pointer transition-all duration-300 h-full flex flex-col
+                      ${difficulty === diff.id
+                                                ? 'border-2 border-[var(--color-cyan)] shadow-[0_0_20px_rgba(0,255,255,0.4)] bg-[rgba(0,255,255,0.05)]'
+                                                : 'border border-[var(--color-border)] hover:border-[var(--color-magenta)]'
                                             }
                     `}
                                         onClick={() => setDifficulty(diff.id as any)}
                                     >
-                                        <h3 className="text-xl font-bold mb-2 text-cyber-white">{diff.name}</h3>
-                                        <p className="text-cyber-white/70 text-sm leading-relaxed">
+                                        <h3 className={`text-xl font-bold mb-2 font-heading ${difficulty === diff.id ? 'text-[var(--color-cyan)]' : 'text-[var(--color-chrome)]'}`}>
+                                            {diff.name}
+                                        </h3>
+                                        <p className="text-[var(--color-chrome)]/70 text-sm leading-relaxed font-mono">
                                             {diff.description}
                                         </p>
                                     </div>
@@ -220,22 +230,22 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                         </div>
 
                         {/* Player Info Summary */}
-                        <div className="glass p-4 rounded-lg mb-6">
+                        <div className="border border-[var(--color-border)] bg-black/40 p-4 mb-8 font-mono text-sm">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
-                                    <p className="text-electric-blue font-semibold mb-1">Player 1</p>
-                                    <p className="text-cyber-white">{player1.name}</p>
+                                    <p className="text-[var(--color-cyan)] mb-1 uppercase text-xs tracking-widest">Player 1</p>
+                                    <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">{player1.name}</p>
                                 </div>
                                 {gameMode === 'local' && (
                                     <div>
-                                        <p className="text-neural-purple font-semibold mb-1">Player 2</p>
-                                        <p className="text-cyber-white">{player2.name}</p>
+                                        <p className="text-[var(--color-magenta)] mb-1 uppercase text-xs tracking-widest">Player 2</p>
+                                        <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">{player2.name}</p>
                                     </div>
                                 )}
                                 {isVsAI && (
                                     <div>
-                                        <p className="text-neon-red font-semibold mb-1">AI Opponent</p>
-                                        <p className="text-cyber-white">Neural Shadow</p>
+                                        <p className="text-[var(--color-orange)] mb-1 uppercase text-xs tracking-widest">OPPONENT</p>
+                                        <p className="text-[var(--color-chrome)] border-b border-[var(--color-border)] pb-1">NEURAL_SHADOW_AI</p>
                                     </div>
                                 )}
                             </div>
@@ -247,7 +257,7 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                             size="lg"
                             onClick={handleDifficultySubmit}
                         >
-                            Start Game
+                            INITIATE_GAME_SEQUENCE
                         </Button>
                     </Card>
                 )}

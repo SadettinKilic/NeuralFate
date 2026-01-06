@@ -69,16 +69,18 @@ export default function ResultsPage() {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     transition={{ type: 'spring', damping: 15 }}
                 >
-                    <Card variant="border" className="p-12 text-center relative overflow-hidden">
+                    <Card variant="terminal" className="p-12 text-center relative overflow-hidden">
                         {/* Animated background */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-electric-blue/10 via-neural-purple/10 to-neon-red/10 animate-pulse" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-900/20 via-purple-900/20 to-red-900/20 animate-pulse" />
 
                         <div className="relative z-10">
-                            <Trophy className="w-24 h-24 text-warning-yellow mx-auto mb-6" />
-                            <h1 className="text-5xl font-bold mb-4 text-glow bg-gradient-to-r from-electric-blue to-warning-yellow bg-clip-text text-transparent">
+                            <Trophy className="w-24 h-24 text-[var(--color-orange)] mx-auto mb-6" />
+                            <h1 className="text-5xl font-bold mb-4 text-glow bg-gradient-to-r from-[var(--color-cyan)] to-[var(--color-orange)] bg-clip-text text-transparent font-heading">
                                 CASE CLOSED
                             </h1>
-                            <p className="text-3xl text-cyber-white mb-2">Winner: <span className="font-bold">{winnerName}</span></p>
+                            <p className="text-3xl text-[var(--color-chrome)] mb-2 font-mono">
+                                WINNER: <span className="font-bold text-[var(--color-cyan)]">{winnerName}</span>
+                            </p>
                         </div>
                     </Card>
                 </motion.div>
@@ -89,21 +91,21 @@ export default function ResultsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                 >
-                    <Card variant="strong" className="p-8">
-                        <h2 className="text-2xl font-bold mb-6 text-center">Final Suspicion Levels</h2>
+                    <Card variant="terminal" className="p-8">
+                        <h2 className="text-2xl font-bold mb-6 text-center font-heading text-[var(--color-chrome)]">FINAL_SUSPICION_METRICS</h2>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             {/* Player 1 */}
                             <div className="text-center">
-                                <h3 className="text-xl font-semibold mb-4 text-electric-blue">{player1.name}</h3>
+                                <h3 className="text-xl font-semibold mb-4 text-[var(--color-cyan)] font-mono tracking-widest">{player1.name}</h3>
                                 <div className="relative h-48 flex items-end justify-center">
-                                    <div className="w-24 bg-midnight/50 rounded-t-lg overflow-hidden border-2 border-electric-blue">
+                                    <div className="w-24 bg-black/50 rounded-t-sm overflow-hidden border border-[var(--color-cyan)]">
                                         <motion.div
                                             className={`w-full ${player1Suspicion < 30
-                                                    ? 'bg-green-500'
-                                                    : player1Suspicion < 70
-                                                        ? 'bg-warning-yellow'
-                                                        : 'bg-neon-red'
+                                                ? 'bg-gradient-to-t from-[var(--color-cyan)] to-blue-500'
+                                                : player1Suspicion < 70
+                                                    ? 'bg-gradient-to-t from-[var(--color-orange)] to-yellow-400'
+                                                    : 'bg-gradient-to-t from-[var(--color-neon-red)] to-red-600'
                                                 }`}
                                             initial={{ height: 0 }}
                                             animate={{ height: `${(player1Suspicion / 100) * 12}rem` }}
@@ -111,22 +113,22 @@ export default function ResultsPage() {
                                         />
                                     </div>
                                 </div>
-                                <p className="text-4xl font-bold mt-4 text-glow">{player1Suspicion}%</p>
+                                <p className="text-4xl font-bold mt-4 text-glow font-mono text-[var(--color-chrome)]">{player1Suspicion}%</p>
                             </div>
 
                             {/* Player 2 */}
                             <div className="text-center">
-                                <h3 className="text-xl font-semibold mb-4 text-neural-purple">
+                                <h3 className="text-xl font-semibold mb-4 text-[var(--color-magenta)] font-mono tracking-widest">
                                     {isVsAI ? 'Neural Shadow' : player2.name}
                                 </h3>
                                 <div className="relative h-48 flex items-end justify-center">
-                                    <div className="w-24 bg-midnight/50 rounded-t-lg overflow-hidden border-2 border-neural-purple">
+                                    <div className="w-24 bg-black/50 rounded-t-sm overflow-hidden border border-[var(--color-magenta)]">
                                         <motion.div
                                             className={`w-full ${player2Suspicion < 30
-                                                    ? 'bg-green-500'
-                                                    : player2Suspicion < 70
-                                                        ? 'bg-warning-yellow'
-                                                        : 'bg-neon-red'
+                                                ? 'bg-gradient-to-t from-[var(--color-cyan)] to-blue-500'
+                                                : player2Suspicion < 70
+                                                    ? 'bg-gradient-to-t from-[var(--color-orange)] to-yellow-400'
+                                                    : 'bg-gradient-to-t from-[var(--color-neon-red)] to-red-600'
                                                 }`}
                                             initial={{ height: 0 }}
                                             animate={{ height: `${(player2Suspicion / 100) * 12}rem` }}
@@ -134,7 +136,7 @@ export default function ResultsPage() {
                                         />
                                     </div>
                                 </div>
-                                <p className="text-4xl font-bold mt-4 text-glow">{player2Suspicion}%</p>
+                                <p className="text-4xl font-bold mt-4 text-glow font-mono text-[var(--color-chrome)]">{player2Suspicion}%</p>
                             </div>
                         </div>
                     </Card>
@@ -146,21 +148,21 @@ export default function ResultsPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                 >
-                    <Card variant="strong" className="p-8 border-2 border-neon-red">
+                    <Card variant="terminal" className="p-8 border-2 border-[var(--color-neon-red)]">
                         <div className="flex items-start gap-4">
-                            <AlertTriangle className="w-12 h-12 text-neon-red flex-shrink-0 mt-1" />
+                            <AlertTriangle className="w-12 h-12 text-[var(--color-neon-red)] flex-shrink-0 mt-1" />
                             <div>
-                                <h2 className="text-2xl font-bold mb-4 text-neon-red">Truth Revealed</h2>
-                                <p className="text-cyber-white text-lg mb-4">
-                                    The real killer was <span className="font-bold text-neon-red text-glow">{killerName}</span>
+                                <h2 className="text-2xl font-bold mb-4 text-[var(--color-neon-red)] font-heading uppercase tracking-widest">Truth Revealed</h2>
+                                <p className="text-[var(--color-chrome)] text-lg mb-4 font-mono">
+                                    PERPETRATOR: <span className="font-bold text-[var(--color-neon-red)] text-glow">{killerName}</span>
                                 </p>
-                                <p className="text-cyber-white/80">
-                                    Both suspects were present at <span className="font-semibold text-electric-blue">{convergenceLocation}</span> at the time of the murder.
+                                <p className="text-[var(--color-chrome)]/80">
+                                    Both suspects were present at <span className="font-semibold text-[var(--color-cyan)]">{convergenceLocation}</span> at the time of the murder.
                                     Through seemingly mundane choices throughout the day, {killerName} unknowingly became entangled in a web of circumstance
                                     that led to this tragic outcome.
                                 </p>
-                                <p className="text-cyber-white/60 mt-4 text-sm italic">
-                                    In Neural Fate, every choice matters - even the ordinary ones.
+                                <p className="text-[var(--color-chrome)]/60 mt-4 text-sm italic font-mono">
+                                    // IN NEURAL FATE, EVERY CHOICE MATTERS. Even the ordinary ones.
                                 </p>
                             </div>
                         </div>
@@ -174,10 +176,10 @@ export default function ResultsPage() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.9 }}
                     >
-                        <Card variant="strong" className="p-8">
-                            <h2 className="text-2xl font-bold mb-6 text-center">Rate This Scenario</h2>
-                            <p className="text-cyber-white/80 text-center mb-6">
-                                Help us improve! Scenarios rated 3+ will be saved for future games.
+                        <Card variant="default" className="p-8">
+                            <h2 className="text-2xl font-bold mb-6 text-center text-[var(--color-cyan)] font-heading">RATE_SIMULATION</h2>
+                            <p className="text-[var(--color-chrome)]/80 text-center mb-6 font-mono text-sm">
+                                &gt; Help us improve. Scenarios rated 3+ are archived for future training data.
                             </p>
 
                             <div className="flex justify-center gap-4 mb-6">
@@ -191,8 +193,8 @@ export default function ResultsPage() {
                                     >
                                         <Star
                                             className={`w-12 h-12 ${stars <= rating
-                                                    ? 'fill-warning-yellow text-warning-yellow'
-                                                    : 'text-cyber-white/30'
+                                                ? 'fill-[var(--color-orange)] text-[var(--color-orange)]'
+                                                : 'text-[var(--color-chrome)]/30'
                                                 }`}
                                         />
                                     </motion.button>
@@ -205,14 +207,14 @@ export default function ResultsPage() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                     >
-                        <Card variant="strong" className="p-8 text-center">
-                            <h3 className="text-xl font-bold text-electric-blue mb-2">
-                                {isSaving ? 'Saving your rating...' : 'Thank you for your feedback!'}
+                        <Card variant="terminal" className="p-8 text-center bg-black/80">
+                            <h3 className="text-xl font-bold text-[var(--color-cyan)] mb-2 font-mono">
+                                {isSaving ? 'ARCHIVING_DATA...' : 'FEEDBACK_ACKNOWLEDGED'}
                             </h3>
-                            <p className="text-cyber-white/70">
+                            <p className="text-[var(--color-chrome)]/70 font-mono text-sm">
                                 {rating >= 3
-                                    ? 'This scenario will be available for future players.'
-                                    : 'Your feedback helps us create better experiences.'}
+                                    ? 'SCENARIO_ARCHIVED_FOR_FUTURE_USE'
+                                    : 'DATA_DISCARDED. THANK_YOU.'}
                             </p>
                         </Card>
                     </motion.div>
@@ -231,7 +233,7 @@ export default function ResultsPage() {
                         size="lg"
                         onClick={handlePlayAgain}
                     >
-                        Play Again
+                        REBOOT_SYSTEM
                     </Button>
                     <Button
                         variant="ghost"
@@ -239,7 +241,7 @@ export default function ResultsPage() {
                         size="lg"
                         onClick={() => router.push('/')}
                     >
-                        Main Menu
+                        TERMINATE_SESSION
                     </Button>
                 </motion.div>
             </div>
