@@ -20,11 +20,12 @@ export function Input({ label, error, className, ...props }: InputProps) {
             <div className="relative">
                 <input
                     className={cn(
-                        'w-full px-3 py-3 font-mono text-lg bg-black/50',
+                        'w-full px-3 py-3 font-mono text-lg bg-black/80',
                         'border-b-2 border-[var(--color-magenta)] border-t-0 border-x-0 rounded-none',
                         'text-[var(--color-cyan)] placeholder-[var(--color-magenta)]/50',
                         'focus:outline-none focus:border-[var(--color-cyan)] focus:shadow-[0_4px_10px_rgba(0,255,255,0.2)]',
                         'transition-all duration-300',
+                        'autofill:bg-black autofill:text-[var(--color-cyan)]',
                         error && 'border-[var(--color-neon-red)] focus:border-[var(--color-neon-red)]',
                         className
                     )}

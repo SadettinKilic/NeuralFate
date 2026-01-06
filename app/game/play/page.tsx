@@ -47,6 +47,8 @@ export default function GamePlayPage() {
     const [showingResult, setShowingResult] = useState(false);
     const [countdown, setCountdown] = useState(10);
 
+    const [errorDetail, setErrorDetail] = useState<string>('');
+
     // Load story on mount
     useEffect(() => {
         loadStory();
@@ -54,6 +56,7 @@ export default function GamePlayPage() {
 
     const loadStory = async () => {
         try {
+            console.log("Hikaye yukleme baslatildi...");
             const response = await fetch('/api/gemini/generate-story', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -66,9 +69,19 @@ export default function GamePlayPage() {
                 })
             });
 
-            if (!response.ok) throw new Error('Failed to generate story');
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error("API Hatas:", errorData);
+                throw new Error(errorData.details || errorData.error || 'Hikaye olusturulamadi');
+            }
 
             const data = await response.json();
+            console.log("Hikaye basariyla alindi:", data);
+
+            if (!data.dilemmas || !Array.isArray(data.dilemmas) || data.dilemmas.length === 0) {
+                throw new Error("Gecersiz hikaye format: Dilemma listesi bos");
+            }
+
             setStoryData(data);
             setConvergenceLocation(data.convergenceLocation);
 
@@ -79,8 +92,9 @@ export default function GamePlayPage() {
             setPlayer2(updatedP2);
 
             setIsLoading(false);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error loading story:', error);
+            setErrorDetail(error.message || 'Bilinmeyen Hata');
             setIsLoading(false);
         }
     };
@@ -157,9 +171,13 @@ export default function GamePlayPage() {
     if (!storyData) {
         return (
             <main className="min-h-screen flex items-center justify-center p-4">
-                <Card variant="terminal" className="p-8 text-center border-[var(--color-neon-red)]">
+                <Card variant="terminal" className="p-8 text-center border-[var(--color-neon-red)] max-w-lg">
                     <h2 className="font-heading text-2xl font-bold text-[var(--color-neon-red)] mb-4">SISTEM_HATASI</h2>
-                    <Button variant="outline" onClick={() => router.push('/')}>GOREVI_IPTAL_ET</Button>
+                    <div className="bg-black/50 p-4 rounded border border-red-900/50 mb-6 text-left overflow-auto max-h-40">
+                        <p className="text-red-400 font-mono text-sm">Hata Detayi:</p>
+                        <p className="text-[var(--color-chrome)] font-mono text-xs">{errorDetail}</p>
+                    </div>
+                    <Button variant="outline" onClick={() => router.push('/')}>ANA_MENUYE_DON</Button>
                 </Card>
             </main>
         );

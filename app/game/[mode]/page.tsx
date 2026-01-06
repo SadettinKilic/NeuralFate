@@ -142,16 +142,17 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                             <label className="text-[var(--color-cyan)] text-sm font-mono tracking-widest uppercase mb-4 block">
                                 &gt; AVATAR_SEC
                             </label>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
                                 {AVATARS.map((avatar) => (
                                     <motion.div
                                         key={avatar.id}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
+                                        title={avatar.name}
                                     >
                                         <div
                                             className={`
-                        glass p-4 cursor-pointer transition-all duration-300 relative overflow-hidden group
+                        glass p-2 cursor-pointer transition-all duration-300 relative overflow-hidden group aspect-square flex flex-col items-center justify-center
                         ${selectedAvatar === avatar.id
                                                     ? 'border-2 border-[var(--color-cyan)] shadow-[0_0_20px_rgba(0,255,255,0.4)]'
                                                     : 'border border-[var(--color-border)] hover:border-[var(--color-magenta)]'
@@ -166,11 +167,10 @@ export default function GameModePage({ params }: { params: { mode: string } }) {
                                                 <div className="absolute inset-0 bg-[var(--color-cyan)] opacity-10" />
                                             )}
 
-                                            <div className="aspect-square bg-black/50 mb-3 flex items-center justify-center border border-[var(--color-border)] group-hover:border-[var(--color-magenta)] transition-colors">
-                                                <Sparkles className={`w-8 h-8 ${selectedAvatar === avatar.id ? 'text-[var(--color-cyan)]' : 'text-[var(--color-magenta)]'} group-hover:animate-spin`} />
-                                            </div>
-                                            <p className="text-[var(--color-chrome)] text-xs text-center font-mono uppercase tracking-tight">
-                                                {avatar.name}
+                                            <Sparkles className={`w-6 h-6 ${selectedAvatar === avatar.id ? 'text-[var(--color-cyan)]' : 'text-[var(--color-magenta)]'} group-hover:animate-spin mb-1`} />
+
+                                            <p className="text-[var(--color-chrome)] text-[0.6rem] text-center font-mono uppercase tracking-tight leading-none truncate w-full">
+                                                {avatar.name.split(' ')[0]}
                                             </p>
                                         </div>
                                     </motion.div>
