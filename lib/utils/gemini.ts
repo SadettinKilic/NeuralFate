@@ -45,7 +45,7 @@ export interface QuestionResult {
  * Generate a complete story scenario with dilemmas for both players
  */
 export async function generateStory(params: StoryParams): Promise<StoryResult> {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     const difficultyConfig = {
         EASY: { dilemmaCount: 4, interval: '3-4 hours' },
