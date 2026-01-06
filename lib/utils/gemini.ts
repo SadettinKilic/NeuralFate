@@ -45,7 +45,7 @@ export interface QuestionResult {
  * Generate a complete story scenario with dilemmas for both players
  */
 export async function generateStory(params: StoryParams): Promise<StoryResult> {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-001' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const difficultyConfig = {
         EASY: { dilemmaCount: 4, interval: '3-4 hours' },
@@ -116,7 +116,7 @@ IMPORTANT:
  * Generate interrogation questions based on player choices
  */
 export async function generateQuestions(params: QuestionParams): Promise<QuestionResult> {
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-001' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const prompt = `You are a manipulative detective interrogating two suspects.
 
