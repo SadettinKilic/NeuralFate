@@ -12,27 +12,32 @@ export function Input({ label, error, className, ...props }: InputProps) {
     return (
         <div className="flex flex-col gap-2 w-full">
             {label && (
-                <label className="text-cyber-white text-sm font-medium">
-                    {label}
+                <label className="text-[var(--color-cyan)] text-sm font-mono tracking-widest uppercase">
+                    &gt; {label}
                 </label>
             )}
 
-            <input
-                className={cn(
-                    'w-full px-4 py-3 rounded-lg',
-                    'bg-midnight/50 border border-electric-blue/30',
-                    'text-cyber-white placeholder-cyber-white/40',
-                    'focus:outline-none focus:border-electric-blue focus:shadow-[0_0_20px_rgba(0,217,255,0.3)]',
-                    'transition-all duration-300',
-                    'min-h-[48px]',
-                    error && 'border-neon-red focus:border-neon-red',
-                    className
-                )}
-                {...props}
-            />
+            <div className="relative">
+                <input
+                    className={cn(
+                        'w-full px-3 py-3 font-mono text-lg bg-black/50',
+                        'border-b-2 border-[var(--color-magenta)] border-t-0 border-x-0 rounded-none',
+                        'text-[var(--color-cyan)] placeholder-[var(--color-magenta)]/50',
+                        'focus:outline-none focus:border-[var(--color-cyan)] focus:shadow-[0_4px_10px_rgba(0,255,255,0.2)]',
+                        'transition-all duration-300',
+                        error && 'border-[var(--color-neon-red)] focus:border-[var(--color-neon-red)]',
+                        className
+                    )}
+                    {...props}
+                />
+                {/* Blinking cursor effect could go here if implemented as custom element, 
+                    but native input caret is fine for now. */}
+            </div>
 
             {error && (
-                <p className="text-neon-red text-sm">{error}</p>
+                <p className="text-[var(--color-neon-red)] text-sm font-mono mt-1">
+                    [ERROR]: {error}
+                </p>
             )}
         </div>
     );

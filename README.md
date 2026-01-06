@@ -1,184 +1,93 @@
-# NEURAL FATE
+# NEURAL FATE (V.2.0.88)
 
-A futuristic detective browser game powered by AI where mundane choices lead to murder.
+![Vaporwave UI](https://img.shields.io/badge/Design_System-Vaporwave%2FOutrun-ff00ff?style=flat-square)
+![Next.js](https://img.shields.io/badge/Framework-Next.js_16-black?style=flat-square)
+![Gemini AI](https://img.shields.io/badge/AI_Core-Gemini_2.0-00ffff?style=flat-square)
 
-![Neural Fate](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)
-![Gemini AI](https://img.shields.io/badge/Gemini-2.0_Flash-blue?style=flat-square)
-![Supabase](https://img.shields.io/badge/Supabase-Realtime-green?style=flat-square)
+A futuristic detective browser game where mundane choices lead to murder, now re-imagined with a **Vaporwave / Outrun** aesthetic.
 
-## 🎮 About the Game
+## 🎨 New Design System: "Digital Nostalgia"
 
-Neural Fate is a hybrid AI detective experience where two players (or one player vs AI) live through a seemingly ordinary day filled with mundane choices. Unbeknownst to them, these choices converge at a crime scene, turning both into suspects in a murder investigation.
+The UI has been completely overhauled to transport users to a synthetic reality:
 
-### Game Modes
+- **The Infinite Grid**: Receding perspective grid that creates continuous spatial flow
+- **Neon Tokens**: High-contrast Neon Cyan (`#00FFFF`) and Hot Magenta (`#FF00FF`)
+- **CRT Aesthetics**: Global scanlines and subtle chromatic aberration
+- **Kinetic Typography**: "Orbitron" for headings and "Share Tech Mono" for data
+- **Theatrical Interaction**: Skewed buttons that morph on hover, glowing inputs, and glass-panel cards
 
-- **🖥️ Local Mode**: Pass-the-phone experience for two players on one device
-- **🌐 Online Multiplayer**: Real-time synchronization with a friend on another device  
-- **🤖 Solo vs AI**: Challenge the Neural Shadow AI opponent across difficulty levels
+## 🎮 Game Features
 
-### Key Features
-
-- **AI-Powered Narratives**: Gemini 2.0 Flash generates unique stories and interrogation questions
-- **Memory-Based Interrogation**: Players must recall specific details from their day
-- **Dynamic Difficulty**: EASY, MEDIUM, and HARD modes with varying dilemma frequency
-- **Suspicion Meter**: Track guilt levels based on interrogation performance
-- **Scenario Caching**: Highly-rated scenarios are saved and reused for future games
-- **Futuristic UI**: Anti-gravity animations, glassmorphism, and neon effects
-
-## 📦 Tech Stack
-
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **Animations**: Framer Motion
-- **Database**: Supabase (PostgreSQL + Realtime)
-- **AI**: Google Gemini 2.0 Flash
-- **Icons**: Lucide React
-- **State Management**: React Context API
-
-## 🎯 How to Play
-
-### 1. Select Game Mode
-Choose between Local, Online Multiplayer, or Solo vs AI
-
-### 2. Create Characters
-- Enter your name
-- Select an avatar
-- Choose difficulty level (host only in multiplayer)
-
-### 3. Day Phase (07:00 - 23:30)
-- Make mundane choices throughout the day
-- Each decision has a 10-second timer
-- Choices determine your location at specific times
-
-### 4. The Catalyst
-A news bulletin reveals a murder at a location where both players were present
-
-### 5. Interrogation Phase
-- Answer 10 memory-based questions about your day
-- Each question has a 15-second timer
-- Correct answers lower suspicion (-10 to -20%)
-- Wrong answers keep suspicion stable (0%)
-- Timeouts increase suspicion (+10 to +20%)
-- 2 critical mistakes = Arrested
-
-### 6. Final Reveal
-- Winner is determined by lowest suspicion level
-- The true killer is revealed
-- Rate the scenario (3+ saves it for future games)
-
-## 📊 Game Statistics
-
-- **Dilemma Frequency**:
-  - EASY: Every 3-4 hours (4 dilemmas)
-  - MEDIUM: Every 2 hours (6 dilemmas)
-  - HARD: Every hour (8 dilemmas)
-
-- **AI Opponent Accuracy**:
-  - EASY: 65% (35% error rate)
-  - MEDIUM: 82% (18% error rate)
-  - HARD: 95% (5% error rate)
-
-## 🏗️ Project Structure
-
-```
-neural-fate/
-├── app/
-│   ├── api/
-│   │   └── gemini/          # AI generation endpoints
-│   ├── game/
-│   │   ├── [mode]/          # Character creation
-│   │   ├── play/            # Day phase gameplay
-│   │   ├── interrogation/   # Interrogation phase
-│   │   └── results/         # Final results
-│   ├── globals.css          # Design system
-│   ├── layout.tsx           # Root layout
-│   └── page.tsx             # Landing page
-├── components/
-│   ├── ui/                  # Reusable UI components
-│   └── game/                # Game-specific components
-├── lib/
-│   ├── contexts/            # React contexts
-│   └── utils/               # Utility functions
-├── supabase-schema.sql      # Database schema
-└── public/                  # Static assets
-```
-
-## 🎨 Design Philosophy
-
-Neural Fate follows **Anti-Gravity** design principles:
-
-- **Floating Elements**: All cards and components have subtle float animations
-- **Glassmorphism**: Translucent backgrounds with backdrop blur
-- **Neon Accents**: Electric blue and neon red color scheme
-- **Responsive**: Mobile-first design with touch-optimized interactions
-- **Accessibility**: Minimum 48px touch targets, keyboard navigation
+- **Local Mode**: Pass-the-terminal experience for two players
+- **Online Multiplayer**: Real-time neural synchronization
+- **Solo vs AI**: Challenge the Neural Shadow algorithm
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-
-- Node.js 18+ and npm
-- Supabase account
-- Google Gemini API key
+- Node.js 18+
+- Supabase Account
+- Google Gemini API Key
 
 ### Installation
 
-1. **Clone the repository**
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd neural-fate
+
+# Install dependencies
+npm install
+
+# Setup Environment (.env.local)
+# Make sure to set NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, and GEMINI_API_KEY
+```
+
+### Running Locally
+
+```bash
+npm run dev
+# Access local terminal at http://localhost:3000
+```
+
+## 📦 Deployment (Vercel)
+
+1. **Commit your changes**:
    ```bash
-   git clone <your-repo-url>
-   cd neural-fate
+   git add .
+   git commit -m "feat: redesign UI to vaporwave system"
+   git push origin main
    ```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+2. **Connect to Vercel**:
+   - Import repository
+   - Add Environment Variables
+   - Deploy
 
-3. **Set up environment variables**
-   
-   Create a `.env.local` file in the root directory:
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=<YOUR_NEXT_PUBLIC_SUPABASE_URL>
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=<YOUR_NEXT_PUBLIC_SUPABASE_ANON_KEY>
-   GEMINI_API_KEY=<YOUR_GEMINI_API_KEY>
-   ```
+3. **Verify Production**:
+   Ensure fonts and animations load correctly on production URL.
 
-4. **Set up Supabase database**
-   
-   Run the SQL script in `supabase-schema.sql` in your Supabase SQL Editor to create the required tables.
+## 🔧 Git Commands for Update
 
-5. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+If you need to update the repository with the new design:
 
-6. **Open your browser**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000)
+```bash
+# Add all new design files
+git add .
 
+# Commit with descriptive message
+git commit -m "refactor: complete UI overhaul to Vaporwave/Outrun design system"
 
-## 🤝 Contributing
+# Push to your branch
+git push origin main
+```
 
-Contributions are welcome! Please follow these guidelines:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+## 📂 Project Structure
 
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 🙏 Acknowledgments
-
-- **Google Gemini**: For powerful AI story generation
-- **Supabase**: For realtime database infrastructure
-- **Vercel**: For seamless deployment
-- **Framer Motion**: For stunning animations
+- `app/globals.css`: Contains the new Vaporwave CSS variables and global animations
+- `components/ui/`: Contains the refactored "Glass Panel" and "Terminal" components
+- `design.xml`: The source of truth for the new design system
 
 ---
-
-**Built with ❤️ using Next.js, Gemini AI, and Supabase**
-
-For issues or questions, please open an issue on GitHub.
+**System Status**: ONLINE
+**Visual Core**: ACTIVE

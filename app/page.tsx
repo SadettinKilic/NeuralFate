@@ -14,24 +14,27 @@ export default function Home() {
   const modes = [
     {
       id: 'local',
-      title: 'Local Mode',
-      description: 'Pass-the-phone experience for two players on one device',
+      title: 'LOCAL_MODE',
+      description: 'Pass-the-phone experience for two players on one terminal.',
       icon: Monitor,
-      color: 'electric-blue'
+      color: 'cyan',
+      variant: 'default' as const
     },
     {
       id: 'online',
-      title: 'Online Multiplayer',
-      description: 'Real-time synchronization with a friend on another device',
+      title: 'NET_CONNECT',
+      description: 'Real-time synchronization via global neural network.',
       icon: Globe,
-      color: 'neural-purple'
+      color: 'magenta',
+      variant: 'terminal' as const
     },
     {
       id: 'solo',
-      title: 'Solo vs AI',
-      description: 'Challenge the Neural Shadow AI opponent across difficulty modes',
+      title: 'VS_AI_CORE',
+      description: 'Challenge the Neural Shadow algorithm.',
       icon: Bot,
-      color: 'neon-red'
+      color: 'orange',
+      variant: 'default' as const
     }
   ];
 
@@ -46,72 +49,68 @@ export default function Home() {
     <main className="min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
       {/* Animated title */}
       <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="text-center mb-12 z-10"
+        className="text-center mb-16 z-10 relative"
       >
-        <h1 className="text-6xl md:text-8xl font-bold mb-4 text-glow relative">
-          <span className="bg-gradient-to-r from-electric-blue via-neural-purple to-neon-red bg-clip-text text-transparent">
-            NEURAL FATE
-          </span>
+        <h1 className="font-heading text-6xl md:text-9xl font-black mb-2 text-transparent bg-clip-text bg-gradient-to-br from-[var(--color-cyan)] via-[var(--color-magenta)] to-[var(--color-orange)] text-glow drop-shadow-[0_0_15px_rgba(255,0,255,0.5)]">
+          NEURAL FATE
         </h1>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-cyber-white/80 text-lg md:text-xl font-light tracking-wide"
+          className="font-mono text-[var(--color-cyan)] text-lg md:text-xl tracking-[0.2em] uppercase"
         >
-          Where mundane choices lead to murder
+          &gt; Where choices lead to termination
         </motion.p>
       </motion.div>
 
       {/* Mode selection cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl w-full z-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl w-full z-10 px-4">
         {modes.map((mode, index) => {
           const Icon = mode.icon;
           return (
             <motion.div
               key={mode.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.15 }}
+              transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
             >
               <Card
-                variant="border"
-                className="cursor-pointer hover:scale-105 transition-all duration-300 h-full flex flex-col"
+                variant={mode.variant}
+                className="cursor-pointer group h-full flex flex-col items-center text-center relative overflow-visible"
                 onClick={() => handleModeSelect(mode.id)}
               >
-                <div className="flex flex-col items-center text-center gap-4 flex-grow">
-                  {/* Icon */}
-                  <div className={`p-4 rounded-full bg-${mode.color}/20 border-2 border-${mode.color}`}>
-                    <Icon className={`w-12 h-12 text-${mode.color}`} />
+                {/* Floating Icon Container */}
+                <div className="mb-6 relative">
+                  <div className={`absolute inset-0 bg-${mode.color === 'cyan' ? '[var(--color-cyan)]' : mode.color === 'magenta' ? '[var(--color-magenta)]' : '[var(--color-orange)]'} opacity-20 blur-xl rounded-full`} />
+                  <div className="relative border-2 border-[var(--color-chrome)] p-4 transform rotate-45 group-hover:rotate-90 transition-transform duration-500 bg-black">
+                    <Icon className={`w-8 h-8 transform -rotate-45 group-hover:-rotate-90 transition-transform duration-500 text-[var(--color-${mode.color === 'orange' ? 'orange' : mode.color === 'magenta' ? 'magenta' : 'cyan'})]`} />
                   </div>
+                </div>
 
-                  {/* Title */}
-                  <h2 className="text-2xl font-bold text-cyber-white">
-                    {mode.title}
-                  </h2>
+                <h2 className="font-heading text-2xl font-bold mb-4 text-[var(--color-chrome)] group-hover:text-[var(--color-cyan)] transition-colors">
+                  {mode.title}
+                </h2>
 
-                  {/* Description */}
-                  <p className="text-cyber-white/70 text-sm leading-relaxed">
-                    {mode.description}
-                  </p>
+                <p className="font-mono text-[var(--color-chrome)]/60 text-sm leading-relaxed mb-8 flex-grow">
+                  {mode.description}
+                </p>
 
-                  {/* Button */}
-                  <div className="mt-auto w-full">
-                    <Button
-                      variant="primary"
-                      className="w-full"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleModeSelect(mode.id);
-                      }}
-                    >
-                      Select Mode
-                    </Button>
-                  </div>
+                <div className="w-full mt-auto">
+                  <Button
+                    variant={index === 1 ? 'secondary' : 'primary'}
+                    className="w-full"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleModeSelect(mode.id);
+                    }}
+                  >
+                    INITIALIZE
+                  </Button>
                 </div>
               </Card>
             </motion.div>
@@ -119,37 +118,14 @@ export default function Home() {
         })}
       </div>
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-electric-blue rounded-full opacity-30"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -100, 0],
-              opacity: [0.3, 0.7, 0.3],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
       {/* Footer */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 text-cyber-white/50 text-sm z-10"
+        className="fixed bottom-4 right-4 text-[var(--color-chrome)]/30 text-xs z-10 font-mono"
       >
-        <p className="font-mono">Powered by Gemini AI & Supabase</p>
+        <p>SYS.VER.2.0.88 // POWERED_BY_GEMINI_CORE</p>
       </motion.div>
     </main>
   );
